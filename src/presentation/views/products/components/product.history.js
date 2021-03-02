@@ -29,13 +29,13 @@ const ProductHistory = () => {
                             </h5>
                         </Col>
                         <Col className="text-right" sm="auto">
-                            <Button color="link" id="toggler">History</Button>
+                            <Button color="link" id={'item' + item.id}>History</Button>
                             <Button color="link">Edit</Button>
                             <Button color="link">Delete</Button>
                         </Col>
                     </Row>
                 </CardBody>
-                <UncontrolledCollapse toggler="#toggler">
+                <UncontrolledCollapse toggler={'#item' + item.id}>
                     <ListGroup horizontal className="mx-4 my-3">
                         {
                             item.prices.map((priceItem) => (

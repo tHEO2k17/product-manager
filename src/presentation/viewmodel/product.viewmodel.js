@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
+import productRepository from "../../data/repository/product.repository";
 
 const initialState = {
-    productList: []
+    productList: productRepository.fetchProducts(),
 }
 
 const productsViewModel = createSlice({
@@ -9,8 +10,9 @@ const productsViewModel = createSlice({
     initialState,
     reducers: {
         addNewProduct: (state, action) => {
-            state.productList.push(action.payload);
-        },
+            productRepository.addProduct(action.payload);
+            state.productList = productRepository.fetchProducts();
+        }
     }
 });
 

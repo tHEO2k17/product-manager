@@ -24,9 +24,8 @@ const ProductView = () => {
         if (event) {
             event.preventDefault();
         }
-
+        
         var product = {
-            id: 0,
             name: input.name,
             prices: [
                 {
@@ -38,7 +37,7 @@ const ProductView = () => {
         };
 
         dispatch(addNewProduct(product));
-        setInput(inputs => ({}));
+        setInput(_ => ({}));
         toggle();
     }
 

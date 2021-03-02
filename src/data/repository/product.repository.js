@@ -1,13 +1,13 @@
-import LocalDataSource from "../datasource/local.datasource";
+import localDatasource from "../datasource/local.datasource";
 
 class ProductRepository {
 
     fetchProducts() {
-
+        return localDatasource.get('products');
     }
 
     addProduct(product) {
-
+        return localDatasource.save('products', product);
     }
 
     deleteProduct(productId) {

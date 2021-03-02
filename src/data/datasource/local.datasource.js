@@ -1,17 +1,21 @@
 class LocalDataSource {
 
     get(key) {
-        setTimeout(() => {
-            return JSON.parse(localStorage.getItem(key));
-        }, 1500);
+        return JSON.parse(localStorage.getItem(key)) ?? [];
     }
 
     save(key, data) {
-        setTimeout(() => {
-            data = JSON.stringify(data);
-            localStorage.setItem(key, data);
-        }, 1500);
+        var storage = this.get(key);
+
+        data.id = this.generateId(storage);
+        storage.push(data);
+        localStorage.setItem(key, JSON.stringify(storage));
+    }
+
+    generateId(data) {
+        let item = data[data.length - 1];
+        return item != null ? item.id + 1 : 0;
     }
 }
 
-export default LocalDataSource;
+export default new LocalDataSource();
