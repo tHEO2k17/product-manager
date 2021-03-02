@@ -11,10 +11,10 @@ class ProductRepository {
     }
 
     deleteProduct(productId) {
-
+        return localDatasource.delete('products', productId);
     }
 
-    editProduct(productId, product) {
+    updateProduct(productId, product) {
 
     }
 

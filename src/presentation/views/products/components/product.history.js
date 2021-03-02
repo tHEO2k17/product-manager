@@ -8,11 +8,19 @@ import {
     ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText
 } from "reactstrap"
 
-import { useSelector } from 'react-redux';
-import { currentProductList } from '../../../viewmodel/product.viewmodel';
+import { useSelector, useDispatch } from 'react-redux';
+import { currentProductList, deleteProduct } from '../../../viewmodel/product.viewmodel';
 
 const ProductHistory = () => {
     const productList = useSelector(currentProductList);
+    const dispatch = useDispatch();
+
+    const handleDelete = (id) => {
+        var isDelete = window.confirm('Do you really want to delete this product?');
+        if (isDelete) {
+            dispatch(deleteProduct(id));
+        }
+    }
 
     return <div>
         <h4>Products</h4>
@@ -31,7 +39,7 @@ const ProductHistory = () => {
                         <Col className="text-right" sm="auto">
                             <Button color="link" id={'item' + item.id}>History</Button>
                             <Button color="link">Edit</Button>
-                            <Button color="link">Delete</Button>
+                            <Button color="link" onClick={() => handleDelete(item.id)}>Delete</Button>
                         </Col>
                     </Row>
                 </CardBody>

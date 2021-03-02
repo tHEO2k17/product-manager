@@ -12,11 +12,15 @@ const productsViewModel = createSlice({
         addNewProduct: (state, action) => {
             productRepository.addProduct(action.payload);
             state.productList = productRepository.fetchProducts();
+        },
+        deleteProduct: (state, action) => {
+            productRepository.deleteProduct(action.payload);
+            state.productList = productRepository.fetchProducts();
         }
     }
 });
 
-export const { addNewProduct } = productsViewModel.actions;
+export const { addNewProduct, deleteProduct } = productsViewModel.actions;
 export const currentProductList = state => state.products.productList;
 
 
